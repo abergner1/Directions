@@ -1,7 +1,11 @@
 package com.example.owner.directions;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
+import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -38,11 +42,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
      */
     @Override
     public void onMapReady(GoogleMap googleMap) {
-        mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
-        LatLng sydney = new LatLng(-34, 151);
-        mMap.addMarker(new MarkerOptions().position(sydney).title("Marker in Sydney"));
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney));
+        String ETenteredAddress = "4 Barstow Street, Allston, MA";
+        String EnteredAddress = ETenteredAddress;
+
+        //EditText ETenteredAddress = (EditText) findViewById(R.id.Address);
+        //String EnteredAddress = ETenteredAddress.getText().toString();
+
+        //String homeAddress2 = "4 Barstow Street, Allston, MA";
+        String EncodeAddress = Uri.encode(EnteredAddress);
+
+        String formattedAddress = "google.navigation:q=" + EncodeAddress;
+
+        Toast.makeText(this, formattedAddress, Toast.LENGTH_LONG).show();
+
+        Uri StartNav = Uri.parse(formattedAddress);
+
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, StartNav);
+        mapIntent.setPackage("com.google.android.apps.maps");
+        startActivity(mapIntent);
     }
 }
