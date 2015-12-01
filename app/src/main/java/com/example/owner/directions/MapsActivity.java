@@ -45,11 +45,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         String ETenteredAddress = "4 Barstow Street, Allston, MA";
         String EnteredAddress = ETenteredAddress;
-
         //EditText ETenteredAddress = (EditText) findViewById(R.id.Address);
+
+        //EditText ETenteredAddress = (EditText) findViewById(R.id.appwidget_text);
         //String EnteredAddress = ETenteredAddress.getText().toString();
 
-        //String homeAddress2 = "4 Barstow Street, Allston, MA";
         String EncodeAddress = Uri.encode(EnteredAddress);
 
         String formattedAddress = "google.navigation:q=" + EncodeAddress;
